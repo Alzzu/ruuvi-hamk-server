@@ -1,29 +1,11 @@
 const express = require('express')
 const ruuvi = require('node-ruuvitag')
-const Influx = require('influx')
+const influx = require('./db')
 
-const influx = new Influx.InfluxDB({
-    host: 'localhost',
-    database: 'ruuvi',
-    schema: [
-        {
-            measurement: 'measurements',
-            fields: {
-                rssi: Influx.FieldType.INTEGER,
-                humidity: Influx.FieldType.FLOAT,
-                temperature: Influx.FieldType.FLOAT,
-                pressure: Influx.FieldType.INTEGER,
-                accelerationX: Influx.FieldType.INTEGER,
-                accelerationY: Influx.FieldType.INTEGER,
-                accelerationZ: Influx.FieldType.INTEGER,
-                battery: Influx.FieldType.INTEGER,
-            },
-            tags: ['ruuviId'],
-        },
-    ],
-})
+const router = require('./routes')
 
 const app = express()
+const port = 3000
 
 let ruuvitags = {}
 
@@ -78,19 +60,6 @@ const saveToDB = () => {
     })
 }
 
-const getLatestData = () => {}
+app.use('', router)
 
-app.get('/latest', (req, res) => {
-    influx
-        .query(
-            'SELECT * FROM "measurements" group by "ruuviId" order by time desc limit 1'
-        )
-        .then(result => {
-            res.json(result)
-        })
-        .catch(err => {
-            res.status(500).send(err.stack)
-        })
-})
-
-app.listen(3000)
+app.listen(port)
