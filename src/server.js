@@ -33,31 +33,35 @@ setInterval(() => {
     saveToDB()
 }, 10000)
 
-const saveToDB = () => {
-    console.log('Adding data to DB')
-    Object.keys(ruuvitags).forEach(tag => {
-        console.log(tag)
+const saveToDB = async () => {
+    if (Object.keys(ruuvitags).length !== 0) {
+        console.log('Adding data to DB')
+        await Object.keys(ruuvitags).forEach(tag => {
+            console.log(tag)
 
-        influx
-            .writePoints([
-                {
-                    measurement: 'measurements',
-                    tags: { ruuviId: tag },
-                    fields: {
-                        rssi: ruuvitags[tag].rssi,
-                        humidity: ruuvitags[tag].humidity,
-                        temperature: ruuvitags[tag].temperature,
-                        pressure: ruuvitags[tag].pressure,
-                        accelerationX: ruuvitags[tag].accelerationX,
-                        accelerationY: ruuvitags[tag].accelerationY,
-                        accelerationZ: ruuvitags[tag].accelerationZ,
+            influx
+                .writePoints([
+                    {
+                        measurement: 'measurements',
+                        tags: { ruuviId: tag },
+                        fields: {
+                            rssi: ruuvitags[tag].rssi,
+                            humidity: ruuvitags[tag].humidity,
+                            temperature: ruuvitags[tag].temperature,
+                            pressure: ruuvitags[tag].pressure,
+                            accelerationX: ruuvitags[tag].accelerationX,
+                            accelerationY: ruuvitags[tag].accelerationY,
+                            accelerationZ: ruuvitags[tag].accelerationZ,
+                        },
                     },
-                },
-            ])
-            .catch(err => {
-                console.error(err)
-            })
-    })
+                ])
+                .catch(err => {
+                    console.error(err)
+                })
+        })
+
+        ruuvitags = {}
+    } else console.log('Nothing to add to DB')
 }
 
 app.use('', router)
