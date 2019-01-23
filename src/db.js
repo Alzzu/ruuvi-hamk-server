@@ -1,7 +1,8 @@
 const Influx = require('influx')
+require('dotenv').config()
 
 const influx = new Influx.InfluxDB({
-    host: '10.0.0.7',
+    host: process.env.INFLUXIP,
     database: 'ruuvi',
     schema: [
         {
