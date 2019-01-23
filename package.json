@@ -11,9 +11,11 @@
         "nodemon": "^1.18.9"
     },
     "scripts": {
-        "start": "nodemon src/server.js --exec babel-node"
+        "start": "nodemon src/server.js"
     },
     "dependencies": {
-        "express": "^4.16.4"
+        "express": "^4.16.4",
+        "influx": "^5.0.7",
+        "node-ruuvitag": "^4.1.0"
     }
 }
