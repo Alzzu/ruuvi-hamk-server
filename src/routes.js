@@ -3,13 +3,32 @@ const influx = require('./db')
 
 const router = express.Router()
 
-router.get('/latest', (req, res) => {
+router.get('/tags', (req, res) => {
+    influx.query(`select ruuviId from "measurements" group by ruuviId`)
+})
+
+router.get('/tags/latest', (req, res) => {
     influx
         .query(
-            'SELECT * FROM "measurements" group by "ruuviId" order by time desc limit 1 '
+            'SELECT * FROM "measurements" group by "ruuviId" order by time desc limit 1'
         )
         .then(result => {
-            res.json(groupBy('ruuviId', result))
+            res.status(200).json(result)
+        })
+        .catch(err => {
+            res.status(500).send(err.stack)
+        })
+})
+
+router.get('/tag/:id', (req, res) => {
+    const id = req.params.id
+    console.log(`Getting single record for ${id}`)
+    influx
+        .query(
+            `SELECT * FROM "measurements" WHERE ruuviId = '${id}' and time > now() - 7d order by desc `
+        )
+        .then(result => {
+            res.status(200).json(result)
         })
         .catch(err => {
             res.status(500).send(err.stack)

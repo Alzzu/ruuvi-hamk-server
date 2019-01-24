@@ -1,12 +1,12 @@
 const express = require('express')
 const ruuvi = require('node-ruuvitag')
 const influx = require('./db')
-
+const cors = require('cors')
 const router = require('./routes')
 
 const app = express()
 const port = 3000
-
+app.use(cors())
 let ruuvitags = {}
 
 ruuvi.on('found', tag => {
