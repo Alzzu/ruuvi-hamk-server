@@ -31,7 +31,7 @@ ruuvi.on('found', tag => {
 
 setInterval(() => {
     saveToDB()
-}, 10000)
+}, 60000)
 
 const saveToDB = async () => {
     if (Object.keys(ruuvitags).length !== 0) {
