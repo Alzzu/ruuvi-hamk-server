@@ -24,7 +24,7 @@ router.get('/tags', (req, res) => {
 router.get('/tags/latest', (req, res) => {
     influx
         .query(
-            'SELECT * FROM "measurements" group by "ruuviId" order by time desc limit 1'
+            'SELECT * FROM "measurements" where time > now() - 1m group by "ruuviId" order by time desc limit 1'
         )
         .then(result => {
             res.status(200).json(result)
