@@ -41,7 +41,7 @@ router.get('/tag/:id/:limit*?', (req, res) => {
     console.log(`Getting single record for ${id}`)
     influx
         .query(
-            `SELECT temperature FROM "measurements" WHERE ruuviId = '${id}' order by asc limit ${limit}`
+            `SELECT temperature FROM "measurements" WHERE ruuviId = '${id}' order by desc limit ${limit}`
         )
         .then(result => {
             res.status(200).json(result)
