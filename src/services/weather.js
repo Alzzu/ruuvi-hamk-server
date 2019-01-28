@@ -1,21 +1,33 @@
-const https = require('https')
-
+const axios = require('axios')
 require('dotenv').config()
 
-const updateForecast = async () => {}
+let daily
 
-let daily = updateForecast()
-setInterval(() => {
-    console.log(daily)
-}, 1000)
-setInterval(() => {
-    daily = updateForecast()
-}, 1800000)
-
-const getDailyForecast = () => {
-    return daily
+const updateForecast = async () => {
+    const res = await axios
+        .get(
+            `https://api.darksky.net/forecast/${
+                process.env.DARKSKY_APIKEY
+            }/60.976229,24.478586`
+        )
+        .then(response => {
+            return response.data
+        })
+    return res
 }
 
+const refresh = async () => {
+    let forecast = await updateForecast()
+
+    setInterval(async () => {
+        forecast = await updateForecast()
+    }, 3000)
+
+    daily = forecast.daily
+}
+
+refresh()
+
 module.exports = {
-    getDailyForecast,
+    daily,
 }
