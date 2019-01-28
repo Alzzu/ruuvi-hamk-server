@@ -17,17 +17,26 @@ const updateForecast = async () => {
 }
 
 const refresh = async () => {
-    let forecast = await updateForecast()
+    updateForecast().then(data => {
+        console.log(data.daily)
+        daily = data.daily
+    })
 
+    console.log(daily)
+    // daily = forecast.daily
+    // console.log(daily)
     setInterval(async () => {
-        forecast = await updateForecast()
-    }, 3000)
-
-    daily = forecast.daily
+        updateForecast().then(data => {
+            daily = data
+        })
+    }, 180000)
 }
 
 refresh()
 
+const returnDaily = () => {
+    return daily
+}
 module.exports = {
-    daily,
+    returnDaily,
 }
