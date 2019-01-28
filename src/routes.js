@@ -70,7 +70,8 @@ router.get('/test/tag/:id/:limit*?', (req, res) => {
 })
 
 router.get('/weather', (req, res) => {
-    res.status(200).json(weather.getDailyForecast())
+    console.log('weather', weather.daily)
+    res.status(200).json(weather.daily)
 })
 
 module.exports = router
