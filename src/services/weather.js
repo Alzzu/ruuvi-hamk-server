@@ -18,18 +18,14 @@ const updateForecast = async () => {
 
 const refresh = async () => {
     updateForecast().then(data => {
-        console.log(data.daily)
         daily = data.daily
     })
 
-    console.log(daily)
-    // daily = forecast.daily
-    // console.log(daily)
     setInterval(async () => {
         updateForecast().then(data => {
-            daily = data
+            daily = data.daily
         })
-    }, 180000)
+    }, 1800000)
 }
 
 refresh()
@@ -37,6 +33,7 @@ refresh()
 const returnDaily = () => {
     return daily
 }
+
 module.exports = {
     returnDaily,
 }
