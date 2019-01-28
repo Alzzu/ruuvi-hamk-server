@@ -1,6 +1,7 @@
 const express = require('express')
 const influx = require('./services/db')
 const weather = require('./services/weather')
+const lunch = require('./services/lunch')
 
 const router = express.Router()
 
@@ -72,6 +73,12 @@ router.get('/test/tag/:id/:limit*?', (req, res) => {
 router.get('/weather', (req, res) => {
     console.log('weather', weather.daily)
     res.status(200).json(weather.daily)
+})
+
+router.get('/lunch', (req, res) => {
+    lunch.getLunch().then(data => {
+        res.status(200).json(data)
+    })
 })
 
 module.exports = router
