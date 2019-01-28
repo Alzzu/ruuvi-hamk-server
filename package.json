@@ -19,6 +19,7 @@
         "dotenv": "^6.2.0",
         "express": "^4.16.4",
         "influx": "^5.0.7",
+        "moment": "^2.24.0",
         "node-ruuvitag": "^4.1.0"
     }
 }
