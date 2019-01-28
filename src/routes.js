@@ -60,7 +60,7 @@ router.get('/test/tag/:id/:limit*?', (req, res) => {
     console.log(`Getting single record for ${id}`)
     influx
         .query(
-            `SELECT mean(temperature) as "temperature" FROM "measurements" WHERE ruuviId = '${id}' and time > now() - 5h group by time(5m) order by desc limit ${limit}`
+            `SELECT mean(temperature) as "temperature" FROM "measurements" WHERE ruuviId = '${id}' and time > now() - 12h group by time(15m) order by desc limit ${limit}`
         )
         .then(result => {
             res.status(200).json(result)
