@@ -1,7 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const router = require('./routes')
-const ruuvi = require('./ruuvi')
+const ruuvi = require('./services/ruuvi')
 const port = 3000
 const app = express()
 

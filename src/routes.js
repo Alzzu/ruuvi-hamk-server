@@ -1,5 +1,6 @@
 const express = require('express')
-const influx = require('./db')
+const influx = require('./services/db')
+const weather = require('./services/weather')
 
 const router = express.Router()
 
@@ -49,6 +50,10 @@ router.get('/tag/:id/:limit*?', (req, res) => {
         .catch(err => {
             res.status(500).send(err.stack)
         })
+})
+
+router.get('/weather', (req, res) => {
+    res.status(200).json(weather.getDailyForecast())
 })
 
 module.exports = router
