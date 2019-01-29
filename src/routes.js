@@ -74,8 +74,9 @@ router.get('/weather', (req, res) => {
     res.status(200).json(weather.returnDaily())
 })
 
-router.get('/lunch', (req, res) => {
-    lunch.getLunch().then(data => {
+router.get('/lunch/:year/:month/:day', (req, res) => {
+    const { year, month, day } = req.params
+    lunch.getLunch(year, month, day).then(data => {
         res.status(200).json(data)
     })
 })
