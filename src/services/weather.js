@@ -8,7 +8,7 @@ const updateForecast = async () => {
         .get(
             `https://api.darksky.net/forecast/${
                 process.env.DARKSKY_APIKEY
-            }/60.976229,24.478586`
+            }/60.976229,24.478586?units=si`
         )
         .then(response => {
             return response.data
