@@ -48,6 +48,7 @@ const saveToDB = async () => {
                             accelerationX: ruuvitags[tag].accelerationX,
                             accelerationY: ruuvitags[tag].accelerationY,
                             accelerationZ: ruuvitags[tag].accelerationZ,
+                            battery: ruuvitags[tag].battery,
                         },
                     },
                 ])
