@@ -25,7 +25,7 @@ const start = async () => {
     })
 
     setInterval(() => {
-        saveToDB()
+        //saveToDB()
     }, 60000)
 }
 
