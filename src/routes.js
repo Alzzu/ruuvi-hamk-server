@@ -51,23 +51,6 @@ router.get('/tag/:id', (req, res) => {
         })
 })
 
-router.get('/test/tag/:id/:limit*?', (req, res) => {
-    const id = req.params.id
-    let limit = 50
-    if (req.params.limit) limit = req.params.limit
-    console.log(`Getting single record for ${id}`)
-    influx
-        .query(
-            `SELECT mean(temperature) as "temperature" FROM "measurements" WHERE ruuviId = '${id}' and time > now() - 12h group by time(15m) order by desc limit ${limit}`
-        )
-        .then(result => {
-            res.status(200).json(result)
-        })
-        .catch(err => {
-            res.status(500).send(err.stack)
-        })
-})
-
 router.get('/tag/:id/mean', (req, res) => {
     const { id } = req.params
     influx
