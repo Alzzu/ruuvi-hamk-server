@@ -1,5 +1,4 @@
 const axios = require('axios')
-const moment = require('moment')
 
 const getLunch = async (year, month, day) => {
     const response = await axios
