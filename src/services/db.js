@@ -3,7 +3,7 @@ require('dotenv').config()
 
 const influx = new Influx.InfluxDB({
     host: process.env.INFLUXIP,
-    database: 'ruuvi',
+    database: process.env.INFLUXDBNAME,
     schema: [
         {
             measurement: 'measurements',
