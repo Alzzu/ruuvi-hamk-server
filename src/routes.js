@@ -41,7 +41,7 @@ router.get('/tag/:id', (req, res) => {
     console.log(`Getting single record for ${id}`)
     influx
         .query(
-            `SELECT mean(temperature) as "temperature" FROM "measurements" WHERE ruuviId = '${id}' and time > now() - 12h group by time(15m) order by desc limit ${limit}`
+            `SELECT mean(temperature) as "temperature" FROM "measurements" WHERE ruuviId = '${id}' and time > now() - 12h group by time(15m) order by desc`
         )
         .then(result => {
             res.status(200).json(result)
