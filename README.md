@@ -4,8 +4,8 @@ This project was part of course in HAMK (https://www.hamk.fi/)
 
 ## Requirements
 
-InfluxDB server
-Node 8
+- InfluxDB server
+- Node 8
 
 ## Tested on
 
@@ -14,13 +14,13 @@ We used https://github.com/hypriot/rpi-influxdb to run InfluxDB as a container o
 
 ## Installation
 
-First you need to run command **npm install** or **yarn** to install the needed packages
+First you need to run command `npm install` or `yarn` to install the needed packages
 
-Then you need to rename **.env.example** to **.env** and then fill all the needed information
+Then you need to rename `.env.example` to `.env` and then fill all the needed information
 
-After that you can run the server by using command **npm start** or **yarn start**
+After that you can run the server by using command `npm start` or `yarn start`
 
 ### Optional
 
-You can also build the server as a docker container using command **docker build -t name/containername .**
-After building the container you can use command **docker run -p 3000:3000 --restart always --net=host -d --name ruuvi-server name/containername** important is that you forward the right port if you changed it
+You can also build the server as a docker container using command `docker build -t name/containername .`
+After building the container you can use command `docker run -p 3000:3000 --restart always --net=host -d --name ruuvi-server name/containername` important is that you forward the right port if you changed it
