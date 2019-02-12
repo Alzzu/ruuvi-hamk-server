@@ -11,7 +11,8 @@
         "nodemon": "^1.18.9"
     },
     "scripts": {
-        "start": "nodemon src/server.js"
+        "dev": "nodemon src/server.js",
+        "start": "node src/server.js"
     },
     "dependencies": {
         "axios": "^0.18.0",
