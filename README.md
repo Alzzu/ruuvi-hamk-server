@@ -2,6 +2,8 @@
 
 This project was part of course in HAMK (https://www.hamk.fi/)
 
+Some of the server functionality is currenyly HAMK specific e.g. Lunch
+
 ## Requirements
 
 - InfluxDB server
@@ -10,6 +12,7 @@ This project was part of course in HAMK (https://www.hamk.fi/)
 ## Tested on
 
 We are running server/client and InfluxDB on Raspberry PI 3 b+
+
 We used https://github.com/hypriot/rpi-influxdb to run InfluxDB as a container on RPI
 
 ## Installation
@@ -23,4 +26,5 @@ After that you can run the server by using command `npm start` or `yarn start`
 ### Optional
 
 You can also build the server as a docker container using command `docker build -t name/containername .`
+
 After building the container you can use command `docker run -p 3000:3000 --restart always --net=host -d --name ruuvi-server name/containername` important is that you forward the right port if you changed it
