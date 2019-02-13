@@ -35,6 +35,8 @@ npm start
 
 ### Optional
 
-You can also build the server as a docker container using command `docker build -t name/containername .`
+It is also possible to run server as docker container
 
-After building the container you can use command `docker run -p 3000:3000 --restart always --net=host -d --name ruuvi-server name/containername` important is that you forward the right port if you changed it
+Build the server as a docker container using command `docker build -t name/containername .`
+
+After building the container you can use command `docker run --restart always --net=host -d --name ruuvi-server name/containername` to run it
